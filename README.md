@@ -2,6 +2,10 @@
 
 A simple Flutter application demonstrating usage of BottomNavigationBar with BLoC pattern.
 
+<p align="center">
+  <img width="300" height="533" src="https://raw.githubusercontent.com/sandrolovnicki/flutter_bottom_navigation_bloc/master/res/demo.gif">
+</p>
+
 ## Getting Started
 
 A few resources to get you started if this is your first Flutter project:
