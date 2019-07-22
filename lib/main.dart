@@ -1,12 +1,32 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class MyApp extends StatelessWidget {
+import 'package:flutter_bottom_navigation_bloc/blocs/bottom_navigation/bottom_navigation.dart';
+import 'package:flutter_bottom_navigation_bloc/ui/app_screen.dart';
+
+class SimpleBlocDelegate extends BlocDelegate {
+  @override
+  void onTransition(Bloc bloc, Transition transition) {
+    super.onTransition(bloc, transition);
+    print(transition);
+  }
+}
+
+void main() {
+  BlocSupervisor.delegate = SimpleBlocDelegate();
+  runApp(App());
+}
+
+class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(),
+      home: BlocProvider<BottomNavigationBloc>(
+        builder: (context) => BottomNavigationBloc(),
+        child: AppScreen(),
+      )
     );
   }
 }
