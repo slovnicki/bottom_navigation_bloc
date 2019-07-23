@@ -1,4 +1,4 @@
-name: flutter_bottom_navigation_bloc
+name: bottom_navigation_bloc
 description: A simple Flutter application demonstrating usage of BottomNavigationBar with BLoC pattern.
 
 # The following defines the version and build number for your application.

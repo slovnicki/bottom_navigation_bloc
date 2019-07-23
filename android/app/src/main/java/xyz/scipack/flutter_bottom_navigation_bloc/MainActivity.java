@@ -1,4 +1,4 @@
-package xyz.scipack.flutter_bottom_navigation_bloc;
+package xyz.scipack.bottom_navigation_bloc;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;
