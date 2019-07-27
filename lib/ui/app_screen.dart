@@ -21,33 +21,32 @@ class AppScreen extends StatelessWidget {
             return Center(child: CircularProgressIndicator());
           }
           if (state is FirstPageLoaded) {
-            return FirstPage();
+            return FirstPage(text: state.text);
           }
           if (state is SecondPageLoaded) {
-            return SecondPage();
-          }
-          if (state is ThirdPageLoaded) {
-            return ThirdPage();
+            return SecondPage(number: state.number);
           }
           return Container();
         },
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem> [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home, color: Colors.black),
-            title: Text('First'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.headset, color: Colors.black),
-            title: Text('Second'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.all_inclusive, color: Colors.black),
-            title: Text('Third'),
-          ),
-        ],
-        onTap: (index) { bottomNavigationBloc.onTap(index); },
+      bottomNavigationBar: BlocBuilder<BottomNavigationEvent, BottomNavigationState>(
+          bloc: bottomNavigationBloc,
+          builder: (BuildContext context, BottomNavigationState state) {
+            return BottomNavigationBar(
+              currentIndex: bottomNavigationBloc.currentIndex,
+              items: const <BottomNavigationBarItem>[
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.home, color: Colors.black),
+                  title: Text('First'),
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.all_inclusive, color: Colors.black),
+                  title: Text('Second'),
+                ),
+              ],
+              onTap: (index) => bottomNavigationBloc.dispatch(PageTapped(index: index)),
+            );
+          }
       ),
     );
   }
