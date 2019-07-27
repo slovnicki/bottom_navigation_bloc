@@ -24,7 +24,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: BlocProvider<BottomNavigationBloc>(
-        builder: (context) => BottomNavigationBloc(),
+        builder: (context) => BottomNavigationBloc()..dispatch(AppStarted()),
         child: AppScreen(),
       )
     );
