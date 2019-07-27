@@ -1,7 +1,18 @@
+import 'package:meta/meta.dart';
 import 'package:equatable/equatable.dart';
 
+@immutable
 abstract class BottomNavigationState extends Equatable {
   BottomNavigationState([List props = const []]) : super(props);
+}
+
+class CurrentIndexChanged extends BottomNavigationState {
+  final int currentIndex;
+
+  CurrentIndexChanged({@required this.currentIndex}) : super([currentIndex]);
+
+  @override
+  String toString() => 'CurrentIndexChanged to $currentIndex';
 }
 
 class PageLoading extends BottomNavigationState {
@@ -10,16 +21,19 @@ class PageLoading extends BottomNavigationState {
 }
 
 class FirstPageLoaded extends BottomNavigationState {
+  final String text;
+
+  FirstPageLoaded({@required this.text}) : super([text]);
+
   @override
-  String toString() => 'FirstPageLoaded';
+  String toString() => 'FirstPageLoaded with text: $text';
 }
 
 class SecondPageLoaded extends BottomNavigationState {
-  @override
-  String toString() => 'SecondPageLoaded';
-}
+  final int number;
 
-class ThirdPageLoaded extends BottomNavigationState {
+  SecondPageLoaded({@required this.number}) : super([number]);
+
   @override
-  String toString() => 'ThirdPageLoaded';
+  String toString() => 'SecondPageLoaded with number: $number';
 }

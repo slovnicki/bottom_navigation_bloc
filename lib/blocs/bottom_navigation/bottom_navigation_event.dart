@@ -1,20 +1,21 @@
+import 'package:meta/meta.dart';
 import 'package:equatable/equatable.dart';
 
+@immutable
 abstract class BottomNavigationEvent extends Equatable {
   BottomNavigationEvent([List props = const []]) : super(props);
 }
 
-class FirstPageTapped extends BottomNavigationEvent {
+class AppStarted extends BottomNavigationEvent {
   @override
-  String toString() => 'FirstPageTapped';
+  String toString() => 'AppStarted';
 }
 
-class SecondPageTapped extends BottomNavigationEvent {
-  @override
-  String toString() => 'SecondPageTapped';
-}
+class PageTapped extends BottomNavigationEvent {
+  final int index;
 
-class ThirdPageTapped extends BottomNavigationEvent {
+  PageTapped({@required this.index}) : super([index]);
+
   @override
-  String toString() => 'ThirdPageTapped';
+  String toString() => 'PageTapped: $index';
 }
