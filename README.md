@@ -1,10 +1,11 @@
 # Bottom Navigation with BLoC
 
-A simple Flutter application demonstrating usage of `BottomNavigationBar` with **BLoC** design pattern.
+A simple Flutter application demonstrating usage of `BottomNavigationBar` with **BLoC** design pattern. You can read a step-by-step guide on building this app [here](https://medium.com/@lovnicki.sandro/flutter-bottomnavigationbar-with-bloc-pattern-bba6f13d49f3)
 
 <p align="center">
   <img width="300" height="533" src="https://raw.githubusercontent.com/sandrolovnicki/bottom_navigation_bloc/master/res/demo.gif">
 </p>
+
 
 ## Getting Started
 
