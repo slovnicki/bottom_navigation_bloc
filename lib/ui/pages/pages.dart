@@ -1,2 +1,2 @@
-export 'first.dart';
-export 'second.dart';
+export 'first_page.dart';
+export 'second_page.dart';

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:bottom_navigation_bloc/repositories/repositories.dart';
 import 'package:bottom_navigation_bloc/blocs/bottom_navigation/bottom_navigation.dart';
 import 'package:bottom_navigation_bloc/ui/app_screen.dart';
 
@@ -24,7 +25,11 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: BlocProvider<BottomNavigationBloc>(
-        builder: (context) => BottomNavigationBloc()..dispatch(AppStarted()),
+        builder: (context) => BottomNavigationBloc(
+          firstPageRepository: FirstPageRepository(),
+          secondPageRepository: SecondPageRepository(),
+        )
+          ..dispatch(AppStarted()),
         child: AppScreen(),
       )
     );

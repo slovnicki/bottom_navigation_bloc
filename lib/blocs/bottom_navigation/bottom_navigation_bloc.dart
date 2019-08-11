@@ -1,13 +1,22 @@
 import 'dart:async';
-import 'dart:math';
 
 import 'package:bloc/bloc.dart';
 
 import 'bottom_navigation_event.dart';
 import 'bottom_navigation_state.dart';
+import 'package:bottom_navigation_bloc/repositories/first_page_repository.dart';
+import 'package:bottom_navigation_bloc/repositories/second_page_respository.dart';
 
 class BottomNavigationBloc extends Bloc<BottomNavigationEvent, BottomNavigationState> {
+  final FirstPageRepository firstPageRepository;
+  final SecondPageRepository secondPageRepository;
   int currentIndex = 0;
+
+  BottomNavigationBloc({
+    this.firstPageRepository,
+    this.secondPageRepository
+  }) : assert(firstPageRepository != null),
+        assert(secondPageRepository != null);
 
   @override
   BottomNavigationState get initialState => PageLoading();
@@ -23,27 +32,31 @@ class BottomNavigationBloc extends Bloc<BottomNavigationEvent, BottomNavigationS
       yield PageLoading();
 
       if (this.currentIndex == 0) {
-        String text = await _fetchFirstPageData();
-        yield FirstPageLoaded(text: text);
+        String data = await _getFirstPageData();
+        yield FirstPageLoaded(text: data);
       }
       if (this.currentIndex == 1) {
-        int number = await _fetchSecondPageData();
-        yield SecondPageLoaded(number: number);
+        int data = await _getSecondPageData();
+        yield SecondPageLoaded(number: data);
       }
     }
   }
 
-  Future<String> _fetchFirstPageData() async {
-    // simulate real data fetching
-    await Future.delayed(Duration(milliseconds: 600));
-    // return dummy data
-    return 'First Page';
+  Future<String> _getFirstPageData() async {
+    String data = firstPageRepository.data;
+    if (data == null) {
+      await firstPageRepository.fetchData();
+      data = firstPageRepository.data;
+    }
+    return data;
   }
 
-  Future<int> _fetchSecondPageData() async {
-    // simulate real data fetching
-    await Future.delayed(Duration(milliseconds: 600));
-    // return dummy data
-    return Random().nextInt(1000);
+  Future<int> _getSecondPageData() async {
+    int data = secondPageRepository.data;
+    if (data == null) {
+      await secondPageRepository.fetchData();
+      data = secondPageRepository.data;
+    }
+    return data;
   }
 }

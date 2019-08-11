@@ -1,7 +1,6 @@
 import 'package:meta/meta.dart';
 import 'package:equatable/equatable.dart';
 
-@immutable
 abstract class BottomNavigationEvent extends Equatable {
   BottomNavigationEvent([List props = const []]) : super(props);
 }
