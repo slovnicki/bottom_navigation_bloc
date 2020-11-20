@@ -9,9 +9,6 @@ import 'package:bottom_navigation_bloc/ui/pages/second_page.dart';
 class AppScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final BottomNavigationBloc bottomNavigationBloc =
-        BlocProvider.of<BottomNavigationBloc>(context);
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Bottom Navigation with BLoC'),
@@ -34,7 +31,8 @@ class AppScreen extends StatelessWidget {
           BlocBuilder<BottomNavigationBloc, BottomNavigationState>(
               builder: (BuildContext context, BottomNavigationState state) {
         return BottomNavigationBar(
-          currentIndex: bottomNavigationBloc.currentIndex,
+          currentIndex:
+              context.select((BottomNavigationBloc bloc) => bloc.currentIndex),
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home, color: Colors.black),
@@ -45,7 +43,9 @@ class AppScreen extends StatelessWidget {
               label: 'Second',
             ),
           ],
-          onTap: (index) => bottomNavigationBloc.add(PageTapped(index: index)),
+          onTap: (index) => context
+              .read<BottomNavigationBloc>()
+              .add(PageTapped(index: index)),
         );
       }),
     );
