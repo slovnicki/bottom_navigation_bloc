@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_navigation_test_run/blocs/bottom_navigation/bottom_navigation_bloc.dart';
-import 'package:flutter_navigation_test_run/ui/app_screen.dart';
+import 'package:bottom_navigation_bloc/blocs/bottom_navigation/bottom_navigation_bloc.dart';
+import 'package:bottom_navigation_bloc/ui/app_screen.dart';
 
 import 'repositories/repositories.dart';
 

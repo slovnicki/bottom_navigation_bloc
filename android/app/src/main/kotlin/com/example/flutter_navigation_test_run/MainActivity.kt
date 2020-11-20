@@ -1,4 +1,4 @@
-package com.example.flutter_navigation_test_run
+package com.example.bottom_navigation_bloc
 
 import io.flutter.embedding.android.FlutterActivity
 

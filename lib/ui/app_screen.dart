@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:flutter_navigation_test_run/blocs/bottom_navigation/bottom_navigation_bloc.dart';
-import 'package:flutter_navigation_test_run/ui/pages/first_page.dart';
-import 'package:flutter_navigation_test_run/ui/pages/second_page.dart';
+import 'package:bottom_navigation_bloc/blocs/bottom_navigation/bottom_navigation_bloc.dart';
+import 'package:bottom_navigation_bloc/ui/pages/first_page.dart';
+import 'package:bottom_navigation_bloc/ui/pages/second_page.dart';
 
 class AppScreen extends StatelessWidget {
   @override
