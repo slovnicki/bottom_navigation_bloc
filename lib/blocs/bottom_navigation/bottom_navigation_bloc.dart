@@ -1,30 +1,30 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
+import 'package:meta/meta.dart';
 
-import 'bottom_navigation_event.dart';
-import 'bottom_navigation_state.dart';
-import 'package:bottom_navigation_bloc/repositories/first_page_repository.dart';
-import 'package:bottom_navigation_bloc/repositories/second_page_respository.dart';
+import '../../repositories/repositories.dart';
 
-class BottomNavigationBloc extends Bloc<BottomNavigationEvent, BottomNavigationState> {
+part 'bottom_navigation_event.dart';
+part 'bottom_navigation_state.dart';
+
+class BottomNavigationBloc
+    extends Bloc<BottomNavigationEvent, BottomNavigationState> {
+  BottomNavigationBloc({this.firstPageRepository, this.secondPageRepository})
+      : assert(firstPageRepository != null),
+        assert(secondPageRepository != null),
+        super(PageLoading());
+
   final FirstPageRepository firstPageRepository;
   final SecondPageRepository secondPageRepository;
   int currentIndex = 0;
 
-  BottomNavigationBloc({
-    this.firstPageRepository,
-    this.secondPageRepository
-  }) : assert(firstPageRepository != null),
-        assert(secondPageRepository != null);
-
   @override
-  BottomNavigationState get initialState => PageLoading();
-
-  @override
-  Stream<BottomNavigationState> mapEventToState(BottomNavigationEvent event) async* {
+  Stream<BottomNavigationState> mapEventToState(
+      BottomNavigationEvent event) async* {
     if (event is AppStarted) {
-      this.dispatch(PageTapped(index: this.currentIndex));
+      this.add(PageTapped(index: this.currentIndex));
     }
     if (event is PageTapped) {
       this.currentIndex = event.index;

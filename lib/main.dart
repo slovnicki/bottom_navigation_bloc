@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_navigation_test_run/blocs/bottom_navigation/bottom_navigation_bloc.dart';
+import 'package:flutter_navigation_test_run/ui/app_screen.dart';
 
-import 'package:bottom_navigation_bloc/repositories/repositories.dart';
-import 'package:bottom_navigation_bloc/blocs/bottom_navigation/bottom_navigation.dart';
-import 'package:bottom_navigation_bloc/ui/app_screen.dart';
+import 'repositories/repositories.dart';
 
-class SimpleBlocDelegate extends BlocDelegate {
+class SimpleBlocObserver extends BlocObserver {
   @override
   void onTransition(Bloc bloc, Transition transition) {
     super.onTransition(bloc, transition);
@@ -16,7 +16,7 @@ class SimpleBlocDelegate extends BlocDelegate {
 }
 
 void main() {
-  BlocSupervisor.delegate = SimpleBlocDelegate();
+  Bloc.observer = SimpleBlocObserver();
   runApp(App());
 }
 
@@ -25,15 +25,12 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: BlocProvider<BottomNavigationBloc>(
-        builder: (context) => BottomNavigationBloc(
+        create: (context) => BottomNavigationBloc(
           firstPageRepository: FirstPageRepository(),
           secondPageRepository: SecondPageRepository(),
-        )
-          ..dispatch(AppStarted()),
+        )..add(AppStarted()),
         child: AppScreen(),
-      )
+      ),
     );
   }
 }
-
-
